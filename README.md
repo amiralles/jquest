@@ -26,7 +26,7 @@ JQuest is a small library that will help you to test REST APIs from .NET applica
 		}
 ```
 
-**You can write this, and go out for a cup of coffee ;)**
+**You can write this, and go out for coffee ;)**
 
 ```cs
 	var url = "http://jsonplaceholder.typicode.com/posts";
