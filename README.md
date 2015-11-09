@@ -59,8 +59,8 @@ JQuest is a small library that will help you to test REST APIs from .NET applica
 
 	// Acync API
 	Action<string> 
-		onGetSuccess = data => { WriteLine(data); donegetting = true; },
-		onGetError   = err  => { WriteLine(err) ; donegetting = true; };
+		onGetSuccess = data => WriteLine(data),
+		onGetError   = err  => WriteLine(err);
 
 	GetJsonAsync(url, onGetSuccess, onGetError);
 
