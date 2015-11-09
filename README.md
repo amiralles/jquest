@@ -1,6 +1,6 @@
 
 # JQuest
-JQuest is a small library that will help you to test REST APIs from .NET applications. Its main goal is to reduce boilerplate you have to write to POST or GET json from HTTP endpoints.
+JQuest is a small library that will help you to test REST APIs from .NET applications. Its main goal is to reduce the boilerplate code you have to write to POST or GET json from HTTP endpoints.
 
 **So, instead of writing this:**
 
