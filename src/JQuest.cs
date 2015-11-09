@@ -53,14 +53,34 @@ public class JQuest {
 	}
 
 
-	/*
-	/// Sends an asynchronous POST request to the specified URL.
-	public static void GetJsonAsync(string url, object args, Func<string> onSuccess, Func<string> onError) {
+	/// Sends a synchronous GET request to the specified URL.
+	public static string GetJsonSync(string url) {
+		DieIf(string.IsNullOrEmpty(url), $"nameof(url) cannot be null or empty.");
+		
+		var httpWebRequest         = (HttpWebRequest)WebRequest.Create(url);
+		httpWebRequest.ContentType = "application/json";
+		httpWebRequest.Method      = "GET";
+
+		// using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream())) {
+		// 	streamWriter.Flush();
+		// 	streamWriter.Close();
+		// }
+
+		var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+		using (var streamReader = new StreamReader(httpResponse.GetResponseStream())) {
+			var result = streamReader.ReadToEnd();
+
+			return result;
+		}
+	}
+
+	/// Sends an asynchronous GET request to the specified URL.
+	public static void GetJsonAsync(string url, Action<string> onSuccess, Action<string> onError) {
 		DieIf(string.IsNullOrEmpty(url), $"nameof(url) cannot be null or empty.");
 
 		var t = new Thread(()=> {
 			try {
-				var res = GetJsonSync(url, args);
+				var res = GetJsonSync(url);
 
 				if (onSuccess != null)
 					onSuccess(res);
@@ -73,11 +93,9 @@ public class JQuest {
 
 		t.Start();
 	}
-*/
 
 	static void DieIf(bool cnd, string msg) {
-		if (cnd)
-			throw new JQuestException (msg);
+		if (cnd) throw new JQuestException (msg);
 	}
 }
 

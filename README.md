@@ -1,3 +1,4 @@
+
 # JQuest
 JQuest is a small library that will help you to test REST APIs from .NET applications. Its main goal is to reduce boilerplate you have to write to POST or GET json from HTTP endpoints.
 
@@ -33,7 +34,7 @@ JQuest is a small library that will help you to test REST APIs from .NET applica
 	var res = PostJsonSync(url, obj);
 ```
 
-**And of course, it also have an async API:**
+**And of course, it also have an async version:**
 ```cs
 	var url = "http://jsonplaceholder.typicode.com/posts";
 	var obj = new { title = "tests", body = "foo", author = "amiralles" };
@@ -47,3 +48,29 @@ JQuest is a small library that will help you to test REST APIs from .NET applica
 
 
 
+**And this is how you send GET requests**
+
+```cs
+	var url = "http://jsonplaceholder.typicode.com/posts/1";
+
+	// Sync API
+	var getRes = GetJsonSync(url);
+	WriteLine(getRes);
+
+	// Acync API
+	Action<string> 
+		onGetSuccess = data => { WriteLine(data); donegetting = true; },
+		onGetError   = err  => { WriteLine(err) ; donegetting = true; };
+
+	GetJsonAsync(url, onGetSuccess, onGetError);
+
+```
+
+## How to build
+If you are running on mac or linux just execute build.sh to build the library or build_tester.sh to build the tesing console app. Otherwise you can use csc.exe from the Windows Command Line.
+
+
+
+
+
+ 
